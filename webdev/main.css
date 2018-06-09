@@ -1,3 +1,24 @@
 body {
-    background: #999;
+    padding: none;
+    margin: 0;
+    font-family: Arial;
+}
+
+.start {
+    margin: 0;
+    color: blue;
+    background: lightgray;
+}
+
+.start h2 {
+    margin: 0;
+}
+
+.start ul {
+    margin: 0;
+}
+.start ul li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0.5%;
 }

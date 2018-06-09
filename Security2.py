@@ -1,6 +1,5 @@
 import csv
 
-
 def binaryClassification(list):
     newList = []
     for answer in list:

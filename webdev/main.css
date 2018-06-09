@@ -7,10 +7,10 @@ body {
 .start {
     margin: 0;
     color: blue;
-    background: lightgray;
 }
 
 .start h2 {
+    display: inline;
     margin: 0;
 }
 
@@ -18,7 +18,13 @@ body {
     margin: 0;
 }
 .start ul li {
+    background: white;
     display: inline-block;
     list-style-type: none;
-    padding: 0.5%;
+    padding: 0px 5px;
+    margin: 5px 15px 0px 15px;
+}
+
+.start img {
+    display: inline;
 }

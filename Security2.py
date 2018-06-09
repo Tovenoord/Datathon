@@ -133,6 +133,7 @@ def runProgram(domainList, list):
 
 
 def main():
+    # Opens the csv file and saves the necessary rows in arrays
     with open('Dataset.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         Domain = []
@@ -151,21 +152,31 @@ def main():
             endDate.append(row[29])
             DNSSEC.append(row[24])
 
+    # Certificate stores if a domain has a SSL certificate or not
     Certificate = binaryClassification(SSLCertificate)
 
+    # DNSSEClist stores if a domain has DNSSEC or not
     DNSSEClist = binaryClassification(DNSSEC)
 
+    # TypeList stores the type of SSL type a domain uses, with 1 for domain validation, 2 for organization validation,
+    # and 3 for extended validation
     TypeList = typeToList(SSLType)
 
+    # KeyLength stores the length of SSL RSA keys
     KeyLength = keyLength(SSLKeyLength)
 
+    # startDateArray and endDateArray store the starting and ending dates for SSL certificates for each domain
     startDateArray = dates(startDate)
     endDateArray = dates(endDate)
 
+    # isValidDate array stores whether or not an array has a valid date (meaning that it is in between the start and end
+    # date
     isValidDate = validDate(startDateArray, endDateArray)
 
+    # scoreArray assigns a security score for each domain, which is an indication of how secure it is
     scoreArray = scoring(Certificate, DNSSEClist, TypeList, KeyLength, isValidDate)
 
+    # Runs program in an infinite loop, it asks for a domain name and prints its score. It ends if ! is used as input
     runProgram(Domain, scoreArray)
 
 

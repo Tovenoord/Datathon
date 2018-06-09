@@ -21,12 +21,6 @@ with open('Dataset.csv') as csvfile:
         endDate.append(row[29])
         DNSSEC.append(row[24])
 
-print(Domain)
-print(SSLCertificate)
-print(SSLKeyLength)
-print(SSLType)
-print(startDate)
-
 Certificate = []
 
 for answer in SSLCertificate:
@@ -107,6 +101,8 @@ for date in startDate:
         x = x + y + z
         startDateArray.append(x)
         temp = []
+    else:
+        startDateArray.append(0)
     i += 1
 
 print(startDateArray)
@@ -141,6 +137,8 @@ for date in endDate:
         x = x + y + z
         endDateArray.append(x)
         temp = []
+    else:
+        endDateArray.append(0)
     i += 1
 
 print(endDateArray)
@@ -151,7 +149,7 @@ i = 0
 
 for date in startDateArray:
     if endDateArray[i] - 20180609 > 0:
-        if 20180609 - date > 0:
+        if 20180609 < date:
             isValidDate.append(1)
         else:
             isValidDate.append(0)
@@ -197,6 +195,8 @@ for n in Certificate:
         score += 4
     elif KeyLength[i] == 4096:
         score += 5
+    if isValidDate[i] == 1:
+        score += 1
     scoreArray.append(score)
     score = 0
     i += 1
@@ -210,3 +210,8 @@ while var != "!":
         if var == d:
             print("score:", scoreArray[i])
         i += 1
+
+i = 0
+for d in Domain:
+    print("<tr><td>" + d + "</td><td>" + str(scoreArray[i]) + "<\\td><\\tr>")
+    i += 1
